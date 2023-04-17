@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sharpsell_form_builder/app/common/button_elevated.dart';
-import 'package:sharpsell_form_builder/app/common/sharpsell_checkbox.dart';
 import 'package:sharpsell_form_builder/app/form_input_name.dart';
 
 class FormValidationInputDialog extends StatelessWidget {

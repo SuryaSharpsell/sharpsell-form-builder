@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
-class SharpsellFormLabel extends StatelessWidget {
+class SharpsellFormHeading extends StatelessWidget {
   final String heading;
+  final String description;
   bool isFromFormBuilder;
   Function? onSettingTap;
   Function? onDeleteTap;
 
-  SharpsellFormLabel({
+  SharpsellFormHeading({
     Key? key,
     required this.heading,
+    required this.description,
     this.isFromFormBuilder = false,
     this.onSettingTap,
     this.onDeleteTap,
@@ -21,10 +23,21 @@ class SharpsellFormLabel extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text(
-            heading,
-            style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                heading,
+                style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 5),
+              Text(
+                description,
+                style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.grey[500]),
+              ),
+            ],
           ),
+
           if (isFromFormBuilder)
             IconButton(
               icon: const Icon(Icons.settings),

@@ -4,14 +4,13 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 
 class SharpsellFormDropdown extends StatelessWidget {
   final bool isRequired;
-  final int minValue;
-  final int maxValue;
   final String formUniqueKey;
   final List<String> checkBoxItemsList;
   String placeHolder;
   bool isFromFormBuilder;
   Function? onSettingTap;
   Function? onDeleteTap;
+  Function? onValueChanged;
 
   SharpsellFormDropdown({
     Key? key,
@@ -19,10 +18,9 @@ class SharpsellFormDropdown extends StatelessWidget {
     this.isFromFormBuilder = false,
     this.onSettingTap,
     this.onDeleteTap,
+    this.onValueChanged,
     required this.checkBoxItemsList,
     required this.isRequired,
-    required this.minValue,
-    required this.maxValue,
     required this.formUniqueKey,
   }) : super(key: key);
 
@@ -55,6 +53,7 @@ class SharpsellFormDropdown extends StatelessWidget {
                 .toList(),
             onChanged: (val) {
               print("Dropdown value changed - $val");
+              onValueChanged!();
               // setState(() {
               //   _genderHasError = !(_formKey
               //       .currentState?.fields['gender']

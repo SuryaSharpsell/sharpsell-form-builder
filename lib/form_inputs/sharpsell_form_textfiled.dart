@@ -8,18 +8,20 @@ class SharpsellFormTextField extends StatefulWidget {
   final int maxValue;
   bool isNumericField;
   final String formUniqueKey;
-  String placeHolder;
+  final String placeHolder;
   bool isFromFormBuilder;
   Function? onSettingTap;
   Function? onDeleteTap;
+  Function? onValueChanged;
 
   SharpsellFormTextField({
     Key? key,
-    this.placeHolder = "",
     this.isFromFormBuilder = false,
     this.isNumericField = false,
     this.onSettingTap,
     this.onDeleteTap,
+    this.onValueChanged,
+    required this.placeHolder,
     required this.isRequired,
     required this.minValue,
     required this.maxValue,
@@ -57,7 +59,8 @@ class _SharpsellFormTextFieldState extends State<SharpsellFormTextField> {
               // }
             ]),
             onChanged: (val) {
-              print(val); // Print the text value write into TextField
+              print(val);
+              widget.onValueChanged!();
             },
           ),
         ),

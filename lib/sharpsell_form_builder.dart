@@ -107,7 +107,7 @@ class _SharpsellFromBuilderState extends State<SharpsellFromBuilder> {
                             case "Dropdown":
                               addedFormInputList.add(
                                 FormInputDetails(
-                                    formType: SharpsellFormInputType.checkbox,
+                                    formType: SharpsellFormInputType.dropdown,
                                     formUniqueKey: "gender_dropdown",
                                     placeHolder: "Gender",
                                     minValue: 5,
@@ -183,14 +183,14 @@ class _SharpsellFromBuilderState extends State<SharpsellFromBuilder> {
                               final FormInputDetails formItem = addedFormInputList[index];
                               switch (formItem.formType) {
                                 case SharpsellFormInputType.heading:
-                                  return SharpsellFormLabel(
+                                  return SharpsellFormHeading(
                                     key: ValueKey<int>(index),
                                     heading: "Enter Customer Details",
                                     isFromFormBuilder: true,
                                     onSettingTap: () {},
                                     onDeleteTap: () {
                                       deleteFormItemFromList(index);
-                                    },
+                                    }, description: 'This is sample description',
                                   );
                                 case SharpsellFormInputType.textField:
                                   return Container(
@@ -213,7 +213,7 @@ class _SharpsellFromBuilderState extends State<SharpsellFromBuilder> {
                                       },
                                     ),
                                   );
-                                case SharpsellFormInputType.checkbox:
+                                case SharpsellFormInputType.dropdown:
                                   return Container(
                                     key: ValueKey<int>(index),
                                     width: MediaQuery.of(context).size.width / 2.8,
@@ -222,8 +222,6 @@ class _SharpsellFromBuilderState extends State<SharpsellFromBuilder> {
                                       isRequired: formItem.isRequired,
                                       placeHolder: formItem.placeHolder,
                                       isFromFormBuilder: true,
-                                      minValue: 0,
-                                      maxValue: 0,
                                       formUniqueKey: formItem.formUniqueKey,
                                       onSettingTap: () {
                                         print("Settings taped for index $index");
