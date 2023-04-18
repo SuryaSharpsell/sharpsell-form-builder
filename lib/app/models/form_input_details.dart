@@ -5,6 +5,7 @@ class FormInputDetails{
 final SharpsellFormInputType formType;
 final String formUniqueKey;
 final String placeHolder;
+bool? isNumeric;
 List<String>? items;
 final int minValue;
 final int maxValue;
@@ -20,6 +21,7 @@ FormInputDetails({
   required this.order,
   required this.isRequired,
   this.items,
+  this.isNumeric,
 });
 
 }

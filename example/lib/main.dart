@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final String jsonStringOne = "{\"presentation_name\":\"\",\"id\":1,\"form_details\":[{\"form_type\":\"heading\",\"form_key\":\"user_detail_heading\",\"isRequired\":true,\"dependentOn\":[],\"placeHolder\":\"EnterUserDetails\",\"description\":\"UserDetailsheading\",\"order\":1,\"icon_url\":\"\",\"image_url\":\"\",\"video_url\":\"\",\"list_items\":[\"\"],\"validation\":{\"isNumeric\":false,\"minVale\":0,\"maxValue\":0}},{\"form_type\":\"textField\",\"form_key\":\"name_textField\",\"isRequired\":true,\"dependentOn\":[],\"placeHolder\":\"Name\",\"description\":\"\",\"order\":2,\"icon_url\":\"\",\"image_url\":\"\",\"video_url\":\"\",\"list_items\":[\"\"],\"validation\":{\"isNumeric\":false,\"minVale\":1,\"maxValue\":10}},{\"form_type\":\"dropdown\",\"form_key\":\"gender_dropdown\",\"isRequired\":true,\"dependentOn\":[],\"placeHolder\":\"Gender\",\"description\":\"\",\"order\":3,\"icon_url\":\"\",\"image_url\":\"\",\"video_url\":\"\",\"list_items\":[\"Male\",\"Female\",\"Others\"],\"validation\":{\"isNumeric\":false,\"minVale\":0,\"maxValue\":0}}]}";
+    final String jsonStringOne = "{\"presentation_name\":\"\",\"id\":1,\"form_details\":[{\"form_type\":\"heading\",\"form_key\":\"user_detail_heading\",\"isRequired\":true,\"dependentOn\":[],\"placeHolder\":\"Enter User Details\",\"description\":\"User Details heading\",\"order\":1,\"icon_url\":\"\",\"image_url\":\"\",\"video_url\":\"\",\"list_items\":[\"\"],\"validation\":{\"isNumeric\":false,\"minVale\":0,\"maxValue\":0}},{\"form_type\":\"textField\",\"form_key\":\"name_textField\",\"isRequired\":true,\"dependentOn\":[],\"placeHolder\":\"Name\",\"description\":\"\",\"order\":2,\"icon_url\":\"\",\"image_url\":\"\",\"video_url\":\"\",\"list_items\":[\"\"],\"validation\":{\"isNumeric\":false,\"minVale\":1,\"maxValue\":10}},{\"form_type\":\"dropdown\",\"form_key\":\"gender_dropdown\",\"isRequired\":true,\"dependentOn\":[],\"placeHolder\":\"Gender\",\"description\":\"\",\"order\":3,\"icon_url\":\"\",\"image_url\":\"\",\"video_url\":\"\",\"list_items\":[\"Male\",\"Female\",\"Others\"],\"validation\":{\"isNumeric\":false,\"minVale\":0,\"maxValue\":0}}]}";
     final FormInputResponse response = formInputResponseFromJson(jsonStringOne);
     return Scaffold(
       appBar: AppBar(
@@ -43,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Color(0xFFAE1E57),
       ),
       body: SharpsellFormRender(formDetailsResponse: response),
+      // body: SharpsellFromBuilder(),
     );
   }
 }

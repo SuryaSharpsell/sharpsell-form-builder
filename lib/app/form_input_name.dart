@@ -1,1 +1,1 @@
-enum SharpsellFormInputType { textField, heading, dropdown, radio, image }
+enum SharpsellFormInputType { textField,numberTextField, heading, dropdown, checkbox, radio, image }

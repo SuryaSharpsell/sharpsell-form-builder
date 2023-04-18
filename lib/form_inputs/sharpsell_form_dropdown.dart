@@ -5,7 +5,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 class SharpsellFormDropdown extends StatelessWidget {
   final bool isRequired;
   final String formUniqueKey;
-  final List<String> checkBoxItemsList;
+  final List<String> dropDownItemsList;
   String placeHolder;
   bool isFromFormBuilder;
   Function? onSettingTap;
@@ -19,7 +19,7 @@ class SharpsellFormDropdown extends StatelessWidget {
     this.onSettingTap,
     this.onDeleteTap,
     this.onValueChanged,
-    required this.checkBoxItemsList,
+    required this.dropDownItemsList,
     required this.isRequired,
     required this.formUniqueKey,
   }) : super(key: key);
@@ -29,7 +29,7 @@ class SharpsellFormDropdown extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 10.0),
+          padding: const EdgeInsets.only(left: 10.0,right: 10),
           child:  FormBuilderDropdown<String>(
             // autovalidate: true,
             name: formUniqueKey,
@@ -44,7 +44,7 @@ class SharpsellFormDropdown extends StatelessWidget {
               if (isRequired)
                 FormBuilderValidators.required()
             ]),
-            items: checkBoxItemsList
+            items: dropDownItemsList
                 .map((checkBoxItem) => DropdownMenuItem(
               alignment: AlignmentDirectional.centerStart,
               value: checkBoxItem,

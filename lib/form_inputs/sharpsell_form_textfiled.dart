@@ -35,10 +35,11 @@ class SharpsellFormTextField extends StatefulWidget {
 class _SharpsellFormTextFieldState extends State<SharpsellFormTextField> {
   @override
   Widget build(BuildContext context) {
+    print(widget.isNumericField);
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 10.0),
+          padding: const EdgeInsets.only(left: 10.0,right: 10),
           child: FormBuilderTextField(
             name: widget.formUniqueKey,
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -82,7 +83,8 @@ class _SharpsellFormTextFieldState extends State<SharpsellFormTextField> {
                 },
               ),
           ],
-        )
+        ),
+        SizedBox(height: 10)
       ],
     );
   }
