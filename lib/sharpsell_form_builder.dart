@@ -226,158 +226,157 @@ class _SharpsellFromBuilderState extends State<SharpsellFromBuilder> {
                     child: ValueListenableBuilder<bool>(
                         valueListenable: isFormInputUpdated,
                         builder: (_, formSelectedState, __) {
-                          return Column(
-                            children: [
-                              ReorderableListView.builder(
-                                shrinkWrap: true,
-                                itemCount: addedFormInputList.length,
-                                padding: const EdgeInsets.only(left: 8.0, right: 8),
-                                // separatorBuilder: (context, index) {
-                                //   return SizedBox(height: 20);
-                                // },
-                                onReorder: (int oldIndex, int newIndex) {
-                                  setState(() {
-                                    if (newIndex > oldIndex) {
-                                      newIndex -= 1;
-                                    }
-                                    final items = addedFormInputList.removeAt(oldIndex);
-                                    addedFormInputList.insert(newIndex, items);
-                                    isFormInputUpdated.value = !isFormInputUpdated.value;
-                                  });
-                                },
-                                itemBuilder: (context, index) {
-                                  final FormInputDetails formItem = addedFormInputList[index];
-                                  switch (formItem.formType) {
-                                    case SharpsellFormInputType.heading:
-                                      return SharpsellFormHeading(
-                                        key: ValueKey<int>(index),
-                                        heading: "Enter Customer Details",
-                                        isFromFormBuilder: true,
-                                        onSettingTap: () {},
-                                        onDeleteTap: () {
-                                          deleteFormItemFromList(index);
-                                        },
-                                        description: 'This is sample description',
-                                      );
-                                    case SharpsellFormInputType.textField:
-                                      return Container(
-                                        key: ValueKey<int>(index),
-                                        width: MediaQuery.of(context).size.width / 2.8,
-                                        child: SharpsellFormTextField(
-                                          // key: ValueKey<int>(index),
-                                          isRequired: formItem.isRequired,
-                                          minValue: formItem.minValue,
-                                          maxValue: formItem.maxValue,
-                                          placeHolder: formItem.placeHolder,
-                                          formUniqueKey: formItem.formUniqueKey,
-                                          isFromFormBuilder: true,
-                                          onSettingTap: () {
-                                            print("Settings taped for index $index");
-                                          },
-                                          onDeleteTap: () {
-                                            print("Delete taped for index $index");
-                                            deleteFormItemFromList(index);
-                                          },
-                                        ),
-                                      );
-                                    case SharpsellFormInputType.numberTextField:
-                                      return Container(
-                                        key: ValueKey<int>(index),
-                                        width: MediaQuery.of(context).size.width / 2.8,
-                                        child: SharpsellFormTextField(
-                                          // key: ValueKey<int>(index),
-                                          isRequired: formItem.isRequired,
-                                          isNumericField: formItem.isNumeric ?? false,
-                                          minValue: formItem.minValue,
-                                          maxValue: formItem.maxValue,
-                                          placeHolder: formItem.placeHolder,
-                                          formUniqueKey: formItem.formUniqueKey,
-                                          isFromFormBuilder: true,
-                                          onSettingTap: () {
-                                            print("Settings taped for index $index");
-                                          },
-                                          onDeleteTap: () {
-                                            print("Delete taped for index $index");
-                                            deleteFormItemFromList(index);
-                                          },
-                                        ),
-                                      );
-                                    case SharpsellFormInputType.dropdown:
-                                      return Container(
-                                        key: ValueKey<int>(index),
-                                        width: MediaQuery.of(context).size.width / 2.8,
-                                        child: SharpsellFormDropdown(
-                                          dropDownItemsList: formItem.items!,
-                                          isRequired: formItem.isRequired,
-                                          placeHolder: formItem.placeHolder,
-                                          isFromFormBuilder: true,
-                                          formUniqueKey: formItem.formUniqueKey,
-                                          onSettingTap: () {
-                                            print("Settings taped for index $index");
-                                          },
-                                          onDeleteTap: () {
-                                            deleteFormItemFromList(index);
-                                          },
-                                        ),
-                                      );
-                                    case SharpsellFormInputType.checkbox:
-                                      return Container(
-                                        key: ValueKey<int>(index),
-                                        width: MediaQuery.of(context).size.width / 2.8,
-                                        child: SharpsellFormCheckBoxGroup(
-                                          checkboxItems: formItem.items!,
-                                          isRequired: formItem.isRequired,
-                                          placeHolder: formItem.placeHolder,
-                                          isFromFormBuilder: true,
-                                          formUniqueKey: formItem.formUniqueKey,
-                                          onSettingTap: () {
-                                            print("Settings taped for index $index");
-                                          },
-                                          onDeleteTap: () {
-                                            deleteFormItemFromList(index);
-                                          },
-                                        ),
-                                      );
-                                    default:
-                                      return Container();
-                                  }
-                                },
-                              ),
-                              SizedBox(width: 20),
-                              if (addedFormInputList.isNotEmpty)
-                              ButtonElevated(
-                                onPressed: (){
-                                  final Map<String,dynamic> generatedForm = {};
-                                  final List<Map<String,dynamic>> formDetails = [];
-                                  generatedForm["presentation_name"] = "";
-                                  generatedForm["id"] = 1;
-                                  for (final formInput in addedFormInputList){
-                                    formDetails.add({"form_type": formInput.formType.name,
-                                      "form_key": formInput.formUniqueKey,
-                                      "isRequired": formInput.isRequired,
-                                      "dependentOn": [],
-                                      "placeHolder": formInput.placeHolder,
-                                      "order": formInput.order,
-                                      "list_items": formInput.items,
-                                      "icon_url": "",
-                                      "image_url": "",
-                                      "video_url": "",
-                                      "validation": [{"isNumeric": formInput.isNumeric,"minVale": formInput.minValue,"maxValue":formInput.maxValue}]
+                          return SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                ReorderableListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: addedFormInputList.length,
+                                  padding: const EdgeInsets.only(left: 8.0, right: 8),
+                                  onReorder: (int oldIndex, int newIndex) {
+                                    setState(() {
+                                      if (newIndex > oldIndex) {
+                                        newIndex -= 1;
+                                      }
+                                      final items = addedFormInputList.removeAt(oldIndex);
+                                      addedFormInputList.insert(newIndex, items);
+                                      isFormInputUpdated.value = !isFormInputUpdated.value;
                                     });
-                                  }
-                                  generatedForm["form_details"] = formDetails;
+                                  },
+                                  itemBuilder: (context, index) {
+                                    final FormInputDetails formItem = addedFormInputList[index];
+                                    switch (formItem.formType) {
+                                      case SharpsellFormInputType.heading:
+                                        return SharpsellFormHeading(
+                                          key: ValueKey<int>(index),
+                                          heading: "Enter Customer Details",
+                                          isFromFormBuilder: true,
+                                          onSettingTap: () {},
+                                          onDeleteTap: () {
+                                            deleteFormItemFromList(index);
+                                          },
+                                          description: 'This is sample description',
+                                        );
+                                      case SharpsellFormInputType.textField:
+                                        return Container(
+                                          key: ValueKey<int>(index),
+                                          width: MediaQuery.of(context).size.width / 2.8,
+                                          child: SharpsellFormTextField(
+                                            // key: ValueKey<int>(index),
+                                            isRequired: formItem.isRequired,
+                                            minValue: formItem.minValue,
+                                            maxValue: formItem.maxValue,
+                                            placeHolder: formItem.placeHolder,
+                                            formUniqueKey: formItem.formUniqueKey,
+                                            isFromFormBuilder: true,
+                                            onSettingTap: () {
+                                              print("Settings taped for index $index");
+                                            },
+                                            onDeleteTap: () {
+                                              print("Delete taped for index $index");
+                                              deleteFormItemFromList(index);
+                                            },
+                                          ),
+                                        );
+                                      case SharpsellFormInputType.numberTextField:
+                                        return Container(
+                                          key: ValueKey<int>(index),
+                                          width: MediaQuery.of(context).size.width / 2.8,
+                                          child: SharpsellFormTextField(
+                                            // key: ValueKey<int>(index),
+                                            isRequired: formItem.isRequired,
+                                            isNumericField: formItem.isNumeric ?? false,
+                                            minValue: formItem.minValue,
+                                            maxValue: formItem.maxValue,
+                                            placeHolder: formItem.placeHolder,
+                                            formUniqueKey: formItem.formUniqueKey,
+                                            isFromFormBuilder: true,
+                                            onSettingTap: () {
+                                              print("Settings taped for index $index");
+                                            },
+                                            onDeleteTap: () {
+                                              print("Delete taped for index $index");
+                                              deleteFormItemFromList(index);
+                                            },
+                                          ),
+                                        );
+                                      case SharpsellFormInputType.dropdown:
+                                        return Container(
+                                          key: ValueKey<int>(index),
+                                          width: MediaQuery.of(context).size.width / 2.8,
+                                          child: SharpsellFormDropdown(
+                                            dropDownItemsList: formItem.items!,
+                                            isRequired: formItem.isRequired,
+                                            placeHolder: formItem.placeHolder,
+                                            isFromFormBuilder: true,
+                                            formUniqueKey: formItem.formUniqueKey,
+                                            onSettingTap: () {
+                                              print("Settings taped for index $index");
+                                            },
+                                            onDeleteTap: () {
+                                              deleteFormItemFromList(index);
+                                            },
+                                          ),
+                                        );
+                                      case SharpsellFormInputType.checkbox:
+                                        return Container(
+                                          key: ValueKey<int>(index),
+                                          width: MediaQuery.of(context).size.width / 2.8,
+                                          child: SharpsellFormCheckBoxGroup(
+                                            checkboxItems: formItem.items!,
+                                            isRequired: formItem.isRequired,
+                                            placeHolder: formItem.placeHolder,
+                                            isFromFormBuilder: true,
+                                            formUniqueKey: formItem.formUniqueKey,
+                                            onSettingTap: () {
+                                              print("Settings taped for index $index");
+                                            },
+                                            onDeleteTap: () {
+                                              deleteFormItemFromList(index);
+                                            },
+                                          ),
+                                        );
+                                      default:
+                                        return Container();
+                                    }
+                                  },
+                                ),
+                                SizedBox(width: 20),
+                                if (addedFormInputList.isNotEmpty)
+                                ButtonElevated(
+                                  onPressed: (){
+                                    final Map<String,dynamic> generatedForm = {};
+                                    final List<Map<String,dynamic>> formDetails = [];
+                                    generatedForm["presentation_name"] = "";
+                                    generatedForm["id"] = 1;
+                                    for (final formInput in addedFormInputList){
+                                      formDetails.add({"form_type": formInput.formType.name,
+                                        "form_key": formInput.formUniqueKey,
+                                        "isRequired": formInput.isRequired,
+                                        "dependentOn": [],
+                                        "placeHolder": formInput.placeHolder,
+                                        "order": formInput.order,
+                                        "list_items": formInput.items,
+                                        "icon_url": "",
+                                        "image_url": "",
+                                        "video_url": "",
+                                        "validation": [{"isNumeric": formInput.isNumeric,"minVale": formInput.minValue,"maxValue":formInput.maxValue}]
+                                      });
+                                    }
+                                    generatedForm["form_details"] = formDetails;
 
-                                  String fromInJsonString = json.encode(generatedForm);
-                                  print(fromInJsonString);
-                                  // print(generatedForm);
+                                    String fromInJsonString = json.encode(generatedForm);
+                                    print(fromInJsonString);
+                                    // print(generatedForm);
 
-                                },
-                                backgroundColor: Color(0xFFAE1E57),
-                                foregroundColor: Colors.white,
-                                text: "Generate Form",
-                                textStyle: TextStyle(fontSize: 14),
-                              )
-                            ],
+                                  },
+                                  backgroundColor: Color(0xFFAE1E57),
+                                  foregroundColor: Colors.white,
+                                  text: "Generate Form",
+                                  textStyle: TextStyle(fontSize: 14),
+                                )
+                              ],
+                            ),
                           );
                         }),
                     // ,
