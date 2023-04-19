@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sharpsell_form_builder/app/form_input_name.dart';
 import 'package:sharpsell_form_builder/form_inputs/sharpsell_form_checkbox_group.dart';
-import 'package:sharpsell_form_builder/form_inputs/sharpsell_form_label.dart';
+import 'package:sharpsell_form_builder/form_inputs/sharpsell_form_heading.dart';
 import 'package:sharpsell_form_builder/form_inputs/sharpsell_form_textfiled.dart';
 
 import 'app/common/button_elevated.dart';
@@ -28,27 +28,30 @@ class _SharpsellFormRenderState extends State<SharpsellFormRender> {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width / 2.5,
           color: Colors.white,
-          child: FormBuilder(
-            key: _formKey,
-            child: Column(
-              children: [
-                ...getFormInputs(),
-                SizedBox(height: 20),
-                ButtonElevated(
-                  backgroundColor: Color(0xFFAE1E57),
-                  foregroundColor: Colors.white,
-                  text: "Create Presentation",
-                  textStyle: TextStyle(fontSize: 14),
-                  onPressed: () {
-                    if (_formKey.currentState?.saveAndValidate() ?? false) {
-                      debugPrint(_formKey.currentState?.value.toString());
-                    } else {
-                      debugPrint(_formKey.currentState?.value.toString());
-                      debugPrint('validation failed');
-                    }
-                  },
-                )
-              ],
+          child: SingleChildScrollView(
+            child: FormBuilder(
+              key: _formKey,
+              child: Column(
+                children: [
+                  ...getFormInputs(),
+                  SizedBox(height: 20),
+                  ButtonElevated(
+                    backgroundColor: Color(0xFFAE1E57),
+                    foregroundColor: Colors.white,
+                    text: "Create Presentation",
+                    textStyle: TextStyle(fontSize: 14),
+                    onPressed: () {
+                      if (_formKey.currentState?.saveAndValidate() ?? false) {
+                        debugPrint(_formKey.currentState?.value.toString());
+                      } else {
+                        debugPrint(_formKey.currentState?.value.toString());
+                        debugPrint('validation failed');
+                      }
+                    },
+                  ),
+                  SizedBox(height: 20),
+                ],
+              ),
             ),
           ),
         ),
@@ -61,6 +64,7 @@ class _SharpsellFormRenderState extends State<SharpsellFormRender> {
     List<FormDetail> formDetailsList = widget.formDetailsResponse.formDetails;
 
     for (final formInput in formDetailsList) {
+
       if (formInput.formType == SharpsellFormInputType.textField.name || formInput.formType == SharpsellFormInputType.numberTextField.name) {
         formInputList.add(SharpsellFormTextField(
           placeHolder: formInput.placeHolder,
@@ -82,17 +86,18 @@ class _SharpsellFormRenderState extends State<SharpsellFormRender> {
             formUniqueKey: formInput.formKey,
             onValueChanged: () {},
           ));
-        } else if (formInput.formType == SharpsellFormInputType.checkbox.name) {
-          formInputList.add(SharpsellFormCheckBoxGroup(
-            checkboxItems: formInput.listItems,
-            placeHolder: formInput.placeHolder,
-            isRequired: formInput.isRequired,
-            formUniqueKey: formInput.formKey,
-            onValueChanged: (value) {},
-          ));
-        } else {
-          print("Surya - List is empty for ${formInput.formKey}");
         }
+      } else if (formInput.formType == SharpsellFormInputType.checkbox.name) {
+        print("Surya - ${formInput.formType}");
+        formInputList.add(SharpsellFormCheckBoxGroup(
+          checkboxItems: formInput.listItems,
+          placeHolder: formInput.placeHolder,
+          isRequired: formInput.isRequired,
+          formUniqueKey: formInput.formKey,
+          onValueChanged: (value) {},
+        ));
+      } else {
+        print("Surya - List is empty for ${formInput.formKey}");
       }
     }
 

@@ -7,7 +7,7 @@ import 'package:sharpsell_form_builder/app/common/form_validation_input_alert.da
 import 'package:sharpsell_form_builder/app/form_input_name.dart';
 import 'package:sharpsell_form_builder/form_inputs/sharpsell_form_checkbox_group.dart';
 import 'package:sharpsell_form_builder/form_inputs/sharpsell_form_dropdown.dart';
-import 'package:sharpsell_form_builder/form_inputs/sharpsell_form_label.dart';
+import 'package:sharpsell_form_builder/form_inputs/sharpsell_form_heading.dart';
 import 'package:sharpsell_form_builder/form_inputs/sharpsell_form_textfiled.dart';
 
 import 'app/common/button_elevated.dart';
@@ -63,6 +63,8 @@ class _SharpsellFromBuilderState extends State<SharpsellFromBuilder> {
                             maxValue: 0,
                             order: 1,
                             isRequired: true,
+                              isNumeric: false,
+                              items: [""]
                           ),
                         );
                         break;
@@ -76,6 +78,8 @@ class _SharpsellFromBuilderState extends State<SharpsellFromBuilder> {
                             maxValue: 10,
                             order: 1,
                             isRequired: true,
+                              isNumeric: false,
+                              items: [""]
                           ),
                         );
                         break;
@@ -89,6 +93,7 @@ class _SharpsellFromBuilderState extends State<SharpsellFromBuilder> {
                               maxValue: 10,
                               order: 1,
                               isRequired: true,
+                              isNumeric: false,
                               items: ["Male", "Female", "Others"]),
                         );
                         break;
@@ -102,6 +107,7 @@ class _SharpsellFromBuilderState extends State<SharpsellFromBuilder> {
                               maxValue: 10,
                               order: 1,
                               isRequired: true,
+                              isNumeric: false,
                               items: ["Accidental Death Benefit Rider", "Term Benefit Rider", "Permanent Disability Rider", "Critical illness Benefit Rider", "Life Guardian Benefit Rider"]),
                         );
                         break;
@@ -116,6 +122,7 @@ class _SharpsellFromBuilderState extends State<SharpsellFromBuilder> {
                             maxValue: 60,
                             order: 1,
                             isRequired: true,
+                            items:[""]
                           ),
                         );
                         break;
