@@ -35,7 +35,7 @@ class SharpsellFormCheckBoxGroup extends StatelessWidget {
             orientation: OptionsOrientation.vertical,
             activeColor: Color(0xFFAE1E57),
 
-            decoration: InputDecoration(labelText: placeHolder),
+            decoration: InputDecoration(labelText: placeHolder,border: InputBorder.none,),
             name: formUniqueKey,
             // initialValue: const ['Dart'],
             options: checkboxItems.map((checkboxItem) => FormBuilderFieldOption(value: checkboxItem)).toList(),
